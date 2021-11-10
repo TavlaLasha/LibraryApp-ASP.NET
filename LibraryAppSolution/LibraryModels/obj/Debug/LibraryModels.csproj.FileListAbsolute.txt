@@ -1,0 +1,5 @@
+C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryModels\bin\Debug\LibraryModels.dll
+C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryModels\bin\Debug\LibraryModels.pdb
+C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryModels\obj\Debug\LibraryModels.dll
+C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryModels\obj\Debug\LibraryModels.pdb
+C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryModels\obj\Debug\LibraryModels.csprojResolveAssemblyReference.cache
