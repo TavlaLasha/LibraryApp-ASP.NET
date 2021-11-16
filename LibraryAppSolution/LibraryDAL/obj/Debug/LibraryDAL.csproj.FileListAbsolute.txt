@@ -8,3 +8,13 @@ C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryD
 C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\obj\Debug\LibraryDAL.csprojResolveAssemblyReference.cache
 C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\obj\Debug\LibraryDAL.dll
 C:\Users\lasha\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\obj\Debug\LibraryDAL.pdb
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\LibraryDAL.dll.config
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\LibraryDAL.dll
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\LibraryDAL.pdb
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\EntityFramework.dll
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\EntityFramework.xml
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\obj\Debug\LibraryDAL.csprojResolveAssemblyReference.cache
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\obj\Debug\LibraryDAL.dll
+E:\New Recovery\Desktop\C#\ASP.NET\LibraryApp-ASP.NET\LibraryAppSolution\LibraryDAL\obj\Debug\LibraryDAL.pdb

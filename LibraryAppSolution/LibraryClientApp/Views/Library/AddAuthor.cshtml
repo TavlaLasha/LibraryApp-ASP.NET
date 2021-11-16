@@ -6,11 +6,14 @@
 
 <h2>AddAuthor</h2>
 
+<span style="color:red">@ViewBag.ErrorMessage</span>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    if (@ViewBag.ErrorMessage == "")
+    {
     <div class="form-horizontal">
         <h4>AuthorDTO</h4>
         <hr />
@@ -93,8 +96,8 @@
             </div>
         </div>
     </div>
+    }
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

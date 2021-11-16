@@ -6,11 +6,11 @@
 
 <h2>Edit Author</h2>
 
+<span style="color:red">@ViewBag.ErrorMessage</span>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
         <h4>AuthorDTO</h4>
         <hr />
@@ -93,6 +93,7 @@
             </div>
         </div>
     </div>
+    
 }
 
 <div>

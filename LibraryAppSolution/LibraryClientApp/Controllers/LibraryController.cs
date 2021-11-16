@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-//using DropdownListValueMVC.Models;
 
 namespace LibraryClientApp.Controllers
 {
@@ -78,6 +77,7 @@ namespace LibraryClientApp.Controllers
         [Authorize(Roles = "Admin, Manager, Operator")]
         public ActionResult ChangeArchiveStatus(string isbn)
         {
+            ViewBag.ErrorMessage = "";
             try
             {
                 if (isbn.Equals(""))
@@ -93,32 +93,43 @@ namespace LibraryClientApp.Controllers
             }
             catch (Exception ex)
             {
-                return Redirect(Request.UrlReferrer.ToString());
+                ViewBag.ErrorMessage = "ცვლილების დროს მოხდა შეცდომა. ბოდიშს გიხდით";
+                return View();
             }
         }
         [Authorize(Roles = "Admin, Manager")]
         public ActionResult AddProduct()
         {
-            HttpResponseMessage type_response = client.GetAsync($"{BaseURL}/GetAllTypes").Result;
-            List<TypeDTO> tp = new List<TypeDTO>();
-            if (type_response.IsSuccessStatusCode)
+            ViewBag.ErrorMessage = "";
+            try
             {
-                tp = JsonConvert.DeserializeObject<List<TypeDTO>>(type_response.Content.ReadAsStringAsync().Result);
-            }
+                HttpResponseMessage type_response = client.GetAsync($"{BaseURL}/GetAllTypes").Result;
+                List<TypeDTO> tp = new List<TypeDTO>();
+                if (type_response.IsSuccessStatusCode)
+                {
+                    tp = JsonConvert.DeserializeObject<List<TypeDTO>>(type_response.Content.ReadAsStringAsync().Result);
+                }
 
-            HttpResponseMessage prod_response = client.GetAsync($"{BaseURL}/GetAllProductions").Result;
-            List<ProductionDTO> po = new List<ProductionDTO>();
-            if (prod_response.IsSuccessStatusCode)
+                HttpResponseMessage prod_response = client.GetAsync($"{BaseURL}/GetAllProductions").Result;
+                List<ProductionDTO> po = new List<ProductionDTO>();
+                if (prod_response.IsSuccessStatusCode)
+                {
+                    po = JsonConvert.DeserializeObject<List<ProductionDTO>>(prod_response.Content.ReadAsStringAsync().Result);
+                }
+                ViewBag.TypeList = new SelectList(tp, "Type_Name", "Type_Name");
+                ViewBag.ProductionList = new SelectList(po, "Production_Name", "Production_Name");
+
+                return View();
+            }
+            catch (Exception ex)
             {
-                po = JsonConvert.DeserializeObject<List<ProductionDTO>>(prod_response.Content.ReadAsStringAsync().Result);
+                ViewBag.ErrorMessage = "მოხდა შეცდომა. ბოდიშს გიხდით";
+                return View();
             }
-            ViewBag.TypeList = new SelectList(tp, "Type_Name", "Type_Name");
-            ViewBag.ProductionList = new SelectList(po, "Production_Name", "Production_Name");
-
-            return View();
         }
 
         [Authorize(Roles = "Admin, Manager")]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult AddProduct(HttpPostedFileBase file, ProductDTO product, string author_pn)
         {
@@ -146,33 +157,45 @@ namespace LibraryClientApp.Controllers
                 return View();
             }
         }
+
         [Authorize(Roles = "Admin, Manager")]
         public ActionResult AddAuthor()
         {
-            HttpResponseMessage co_response = client.GetAsync($"{BaseURL}/GetAllCountries").Result;
-            List<CountryDTO> co = new List<CountryDTO>();
-            if (co_response.IsSuccessStatusCode)
+            ViewBag.ErrorMessage = "";
+            try
             {
-                co = JsonConvert.DeserializeObject<List<CountryDTO>>(co_response.Content.ReadAsStringAsync().Result);
-            }
+                //throw new Exception("");
+                HttpResponseMessage co_response = client.GetAsync($"{BaseURL}/GetAllCountries").Result;
+                List<CountryDTO> co = new List<CountryDTO>();
+                if (co_response.IsSuccessStatusCode)
+                {
+                    co = JsonConvert.DeserializeObject<List<CountryDTO>>(co_response.Content.ReadAsStringAsync().Result);
+                }
 
-            HttpResponseMessage ci_response = client.GetAsync($"{BaseURL}/GetAllCities").Result;
-            List<CityDTO> ci = new List<CityDTO>();
-            if (ci_response.IsSuccessStatusCode)
+                HttpResponseMessage ci_response = client.GetAsync($"{BaseURL}/GetAllCities").Result;
+                List<CityDTO> ci = new List<CityDTO>();
+                if (ci_response.IsSuccessStatusCode)
+                {
+                    ci = JsonConvert.DeserializeObject<List<CityDTO>>(ci_response.Content.ReadAsStringAsync().Result);
+                }
+
+                List<string> GenderList = new List<string>();
+                GenderList.Add("Male");
+                GenderList.Add("Female");
+                ViewBag.GenderList = new SelectList(GenderList);
+                ViewBag.CountryList = new SelectList(co, "Country_Name", "Country_Name");
+                ViewBag.CityList = new SelectList(ci, "City_Name", "City_Name");
+                return View();
+            }
+            catch (Exception ex)
             {
-                ci = JsonConvert.DeserializeObject<List<CityDTO>>(ci_response.Content.ReadAsStringAsync().Result);
+                ViewBag.ErrorMessage = "მოხდა შეცდომა. ბოდიშს გიხდით";
+                return View();
             }
-
-            List<string> GenderList = new List<string>();
-            GenderList.Add("Male");
-            GenderList.Add("Female");
-            ViewBag.GenderList = new SelectList(GenderList);
-            ViewBag.CountryList = new SelectList(co, "Country_Name", "Country_Name");
-            ViewBag.CityList = new SelectList(ci, "City_Name", "City_Name");
-            return View();
         }
 
         [Authorize(Roles = "Admin, Manager")]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult AddAuthor(HttpPostedFileBase file, AuthorDTO author)
         {
@@ -244,6 +267,7 @@ namespace LibraryClientApp.Controllers
         }
 
         [Authorize(Roles = "Admin, Manager")]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult EditAuthor(string pn, HttpPostedFileBase file, [Bind(Include = "FirstName, LastName, Gender, BirthDate, Country, City, Phone, Email")] AuthorDTO author)
         {
@@ -293,7 +317,8 @@ namespace LibraryClientApp.Controllers
         }
 
         [Authorize(Roles = "Admin, Manager")]
-        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [HttpDelete]
         public ActionResult DeleteAuthor(string pn, FormCollection collection)
         {
             try
